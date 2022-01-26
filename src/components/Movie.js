@@ -24,7 +24,6 @@ const Movie = (props) => {
     const handleSubmit = () => {
         axios.delete(`http://localhost:9000/api/movies/${id}`)
             .then(resp => {
-                console.log(resp);
                 props.setMovies(resp.data)
                 push('/movies');
             })
