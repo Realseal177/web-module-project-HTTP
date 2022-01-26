@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useParams, useHistory, Link } from "react-router-dom";
 import axios from "axios";
 
-const AddMovieForm = () => {
+const AddMovieForm = (props) => {
     const { push } = useHistory();
     const [newMovie, setNewMovie] = useState({
 		title:"",
@@ -23,7 +23,8 @@ const AddMovieForm = () => {
         e.preventDefault();
         axios.post(`http://localhost:9000/api/movies`, newMovie)
             .then(resp => {
-                setNewMovie(resp.data)
+                console.log(resp.data);
+                props.setMovies(resp.data)
                 push('/movies');
             })
             .catch(err => {

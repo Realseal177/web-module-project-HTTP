@@ -15,7 +15,6 @@ const Movie = (props) => {
         axios.get(`http://localhost:9000/api/movies/${id}`)
             .then(res=>{
                 setMovie(res.data);
-                push('/movies');
             })
             .catch(err=>{
                 console.log(err.response);
@@ -26,7 +25,8 @@ const Movie = (props) => {
         axios.delete(`http://localhost:9000/api/movies/${id}`)
             .then(resp => {
                 console.log(resp);
-                setMovie(resp.data)
+                props.setMovies(resp.data)
+                push('/movies');
             })
             .catch(err => console.error(err))
     }
